@@ -18,7 +18,6 @@ Test results summary
 {%- set print_header = true %}
 {%- for t in test_groups|sort(attribute='name') %} {# test_groups #}
   {%- if t.total["FAIL"] or t.regressions %} {# fail or regressions #}
-    {%- set failures = true %}
     {% if print_header %}
 
 Test failures
