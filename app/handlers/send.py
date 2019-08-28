@@ -189,7 +189,10 @@ class SendHandler(hbase.BaseHandler):
                     'email', report_type, job, branch, kernel])
 
                 with redis.lock.Lock(self.redisdb, lock_key, timeout=2):
-                    if not self.redisdb.exists(schedule_hash):
+                    # if not self.redisdb.exists(schedule_hash):
+                    if self.redisdb.exists(schedule_hash):
+                        self.log.warn("-=MG=-: Re-sending e-mail It's a dbug hack!")
+                    if True:
                         self.redisdb.set(
                             schedule_hash, "schedule", ex=86400)
 
